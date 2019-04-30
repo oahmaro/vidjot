@@ -52,7 +52,10 @@ app.post('/ideas', (req, res) => {
       details: req.body.details
     });
   } else {
-    res.send('passed');
+    new Idea({     
+      title: req.body.title,
+      details: req.body.details
+    }).save().then(idea => res.redirect('/ideas'))
   }
 })
 
