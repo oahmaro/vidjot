@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+// Initialize App
 const app = express();
 
 // Connect to mongoose
@@ -93,6 +94,14 @@ app.put('/ideas/:id', (req, res) => {
     })
   })
 });
+
+// Delete Idea
+app.delete('/ideas/:id', (req, res) => {
+  Idea.remove({_id: req.params.id})
+  .then(() => {
+    res.redirect('/ideas')
+  })
+})
 
 const port = 5000;
 
